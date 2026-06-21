@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChallengeAI — Login / Sign Up</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body class="dark-mode">
+<div class="bg-animated"></div>
+<div class="bg-mesh"></div>
+
+<div class="auth-wrapper">
+  <a href="landing.html" class="auth-back">← Back to Home</a>
+
+  <div class="auth-card">
+    <div class="auth-logo">⚡ ChallengeAI</div>
+
+    <!-- TABS -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="loginTab" onclick="switchTab('login')">Login</button>
+      <button class="auth-tab" id="signupTab" onclick="switchTab('signup')">Sign Up</button>
+    </div>
+
+    <!-- ── LOGIN FORM ── -->
+    <form id="loginForm" onsubmit="handleLogin(event)" novalidate>
+      <div class="form-group">
+        <label for="loginEmail">Email Address *</label>
+        <input type="email" id="loginEmail" placeholder="you@example.com"/>
+        <span class="err" id="loginEmailErr"></span>
+      </div>
+      <div class="form-group" style="position:relative">
+        <label for="loginPass">Password *</label>
+        <input type="password" id="loginPass" placeholder="Enter your password"/>
+        <button type="button" class="eye-btn" onclick="togglePass('loginPass', this)">👁</button>
+        <span class="err" id="loginPassErr"></span>
+      </div>
+            <button type="submit" class="submit-btn">🔐 Login</button>
+      <p class="auth-switch">Don't have an account? <a onclick="switchTab('signup')">Sign up here</a></p>
+    </form>
+
+    <!-- ── SIGNUP FORM ── -->
+    <form id="signupForm" style="display:none" onsubmit="handleSignup(event)" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="regFirst">First Name *</label>
+          <input type="text" id="regFirst" placeholder="Ahmed"/>
+          <span class="err" id="regFirstErr"></span>
+        </div>
+        <div class="form-group">
+          <label for="regLast">Last Name *</label>
+          <input type="text" id="regLast" placeholder="Khan"/>
+          <span class="err" id="regLastErr"></span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="regEmail">Email Address *</label>
+        <input type="email" id="regEmail" placeholder="you@example.com"/>
+        <span class="err" id="regEmailErr"></span>
+      </div>
+      <div class="form-group" style="position:relative">
+        <label for="regPass">Password *</label>
+        <input type="password" id="regPass" placeholder="Exactly 8 chars, 1 uppercase, 1 number"/>
+        <button type="button" class="eye-btn" onclick="togglePass('regPass', this)">👁</button>
+        <span class="err" id="regPassErr"></span>
+        <div class="pass-strength" id="passStrength"></div>
+      </div>
+      <div class="form-group" style="position:relative">
+        <label for="regPass2">Confirm Password *</label>
+        <input type="password" id="regPass2" placeholder="Repeat password"/>
+        <button type="button" class="eye-btn" onclick="togglePass('regPass2', this)">👁</button>
+        <span class="err" id="regPass2Err"></span>
+      </div>
+      <div class="form-group">
+        <label for="regCat">Favourite Category *</label>
+        <select id="regCat">
+          <option value="">-- Select a category --</option>
+          <option value="Fitness">💪 Fitness</option>
+          <option value="Mindfulness">🧘 Mindfulness</option>
+          <option value="Creativity">🎨 Creativity</option>
+          <option value="Learning">📚 Learning</option>
+          <option value="Social">🤝 Social</option>
+          <option value="Nutrition">🥗 Nutrition</option>
+          <option value="Productivity">⚡ Productivity</option>
+          <option value="Adventure">🌍 Adventure</option>
+        </select>
+        <span class="err" id="regCatErr"></span>
+      </div>
+      <div class="form-check" style="margin-bottom:6px">
+        <input type="checkbox" id="agreeTerms"/>
+        <label for="agreeTerms">I agree to the Terms & Conditions *</label>
+      </div>
+      <span class="err" id="agreeTermsErr"></span>
+      <button type="submit" class="submit-btn" style="margin-top:16px">🚀 Create Account</button>
+      <p class="auth-switch">Already have an account? <a onclick="switchTab('login')">Login here</a></p>
+    </form>
+
+    <!-- SUCCESS -->
+    <div class="success-msg" id="authSuccess">
+      <div class="success-icon">🎉</div>
+      <h3 id="successHead">Welcome!</h3>
+      <p id="successBody">Redirecting you to your dashboard...</p>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

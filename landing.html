@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChallengeAI — Push Your Limits</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body class="dark-mode">
+<div class="bg-animated"></div>
+<div class="bg-mesh"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">⚡ ChallengeAI</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#how">How it Works</a>
+    <a href="#features">Features</a>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <a href="auth.html" class="btn-outline">Login</a>
+    <a href="auth.html?mode=signup" class="nav-cta">Sign Up Free</a>
+  </div>
+  <button class="hamburger" onclick="toggleNav()">☰</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#about" onclick="toggleNav()">About</a>
+  <a href="#how" onclick="toggleNav()">How it Works</a>
+  <a href="#features" onclick="toggleNav()">Features</a>
+  <a href="auth.html" onclick="toggleNav()">Login</a>
+  <a href="auth.html?mode=signup" onclick="toggleNav()">Sign Up</a>
+</div>
+
+<!-- HERO -->
+<section class="hero landing-hero">
+  <div class="hero-badge pulse-badge">✦ Your Daily Growth Partner</div>
+  <h1 class="hero-title">Push your limits,<br/><span>Every single day.</span></h1>
+  <p class="hero-sub">ChallengeAI gives you a fresh, personalized daily challenge based on what you want to improve — Fitness, Mindfulness, Creativity, and more.</p>
+  <div class="hero-btns">
+    <a href="auth.html?mode=signup" class="btn-primary">🚀 Get Started Free</a>
+    <a href="#how" class="btn-ghost">See How it Works ↓</a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card" data-hover="Across 8 categories">
+      <div class="stat-num">40+</div>
+      <div class="stat-label">Challenges</div>
+    </div>
+    <div class="stat-card" data-hover="Fitness, Mind, Creativity & more">
+      <div class="stat-num">8</div>
+      <div class="stat-label">Categories</div>
+    </div>
+    <div class="stat-card" data-hover="Track & log your progress">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Streak Potential</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+  <div class="section-header">
+    <h2>About ChallengeAI</h2>
+    <p>We believe small daily actions create massive long-term change</p>
+  </div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>ChallengeAI was built for people who want to grow — but don't know where to start. Every day you get a new, actionable challenge tailored to a category you care about.</p>
+      <p style="margin-top:16px">Whether it's a 10-minute workout, a mindfulness reset, a creative exercise, or a social challenge — we make it simple to show up for yourself daily.</p>
+      <p style="margin-top:16px">No fluff. No subscriptions. Just challenges that matter.</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-mini-card">
+        <span>💡</span>
+        <div>
+          <strong>Built for growth</strong>
+          <p>Every challenge is designed to push you slightly outside your comfort zone.</p>
+        </div>
+      </div>
+      <div class="about-mini-card">
+        <span>🎯</span>
+        <div>
+          <strong>Category-focused</strong>
+          <p>Choose what you want to work on — we handle the rest.</p>
+        </div>
+      </div>
+      <div class="about-mini-card">
+        <span>📈</span>
+        <div>
+          <strong>Track your wins</strong>
+          <p>Log every challenge and watch your consistency grow over time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-header">
+    <h2>How it Works</h2>
+    <p>Three simple steps to your daily challenge</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-step-card">
+      <div class="how-num">1</div>
+      <div class="how-icon">🔐</div>
+      <h3>Create Your Account</h3>
+      <p>Sign up in seconds. No credit card. No spam. Just your name and email.</p>
+    </div>
+    <div class="how-step-card">
+      <div class="how-num">2</div>
+      <div class="how-icon">🎯</div>
+      <h3>Pick a Category</h3>
+      <p>Choose from Fitness, Mindfulness, Creativity, Learning, and 4 more categories.</p>
+    </div>
+    <div class="how-step-card">
+      <div class="how-num">3</div>
+      <div class="how-icon">⚡</div>
+      <h3>Accept the Challenge</h3>
+      <p>Generate your challenge, complete it, log it, and come back tomorrow for more.</p>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:40px">
+    <a href="auth.html?mode=signup" class="btn-primary">Start Your First Challenge →</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-header">
+    <h2>Why ChallengeAI?</h2>
+    <p>Everything you need to level up daily</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card" onmouseenter="hoverCard(this,'🎯 Tailored to You','Challenges matched exactly to your chosen category.')" onmouseleave="unhoverCard(this)">
+      <div class="feat-icon">🎯</div>
+      <h3>Category-Specific</h3>
+      <p>No generic content. Every challenge fits exactly what you want to improve.</p>
+    </div>
+    <div class="feat-card" onmouseenter="hoverCard(this,'🔀 Always Different','40+ challenges — never boring, never repetitive.')" onmouseleave="unhoverCard(this)">
+      <div class="feat-icon">🔀</div>
+      <h3>Always Fresh</h3>
+      <p>Multiple challenges per category means you always get something new.</p>
+    </div>
+    <div class="feat-card" onmouseenter="hoverCard(this,'📋 Your Progress','See what you have done and what is left.')" onmouseleave="unhoverCard(this)">
+      <div class="feat-icon">📋</div>
+      <h3>Progress Tracker</h3>
+      <p>Log challenges, mark them done, and build your daily streak.</p>
+    </div>
+    <div class="feat-card" onmouseenter="hoverCard(this,'🌤️ Weather-Smart','Get suggestions based on your local weather conditions.')" onmouseleave="unhoverCard(this)">
+      <div class="feat-icon">🌤️</div>
+      <h3>Weather-Smart</h3>
+      <p>Outdoor or indoor — we suggest based on what the weather is doing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-inner">
+    <h2>Ready to start your streak?</h2>
+    <p>Join ChallengeAI today — it takes 30 seconds to sign up.</p>
+    <a href="auth.html?mode=signup" class="btn-primary" style="margin-top:24px;display:inline-block">Create Free Account →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="nav-logo">⚡ ChallengeAI</div>
+    <p>Push your limits — every single day.</p>
+    <p class="footer-copy">© 2025 ChallengeAI. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ChallengeAI — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body class="dark-mode">
+<div class="bg-animated"></div>
+<div class="bg-mesh"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-logo">⚡ ChallengeAI</div>
+  <div class="nav-links">
+    <a href="#generator">Generator</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#tracker">Tracker</a>
+    <a href="#features">Features</a>
+  </div>
+  <div class="nav-actions">
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+    <div class="user-pill" id="userPill">👤 <span id="userNameNav">User</span></div>
+    <button class="btn-logout" onclick="logout()">Logout</button>
+  </div>
+  <button class="hamburger" onclick="toggleNav()">☰</button>
+</nav>
+<div class="mobile-nav" id="mobileNav">
+  <a href="#generator" onclick="toggleNav()">Generator</a>
+  <a href="#gallery" onclick="toggleNav()">Gallery</a>
+  <a href="#tracker" onclick="toggleNav()">Tracker</a>
+  <a href="#features" onclick="toggleNav()">Features</a>
+  <a onclick="logout()">Logout</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge pulse-badge">✦ Daily Challenges</div>
+  <h1 class="hero-title">Welcome back, <span id="heroName">Champion</span>! 👋</h1>
+  <p class="hero-sub">Pick a category and generate today's challenge. Keep that streak going.</p>
+  <div class="hero-stats">
+    <div class="stat-card" data-hover="Total challenges in tracker">
+      <div class="stat-num" id="statTotal">0</div>
+      <div class="stat-label">Total Logged</div>
+    </div>
+    <div class="stat-card" data-hover="Challenges you completed">
+      <div class="stat-num" id="statDone">0</div>
+      <div class="stat-label">Completed</div>
+    </div>
+    <div class="stat-card" data-hover="Challenges pending">
+      <div class="stat-num" id="statPending">0</div>
+      <div class="stat-label">Pending</div>
+    </div>
+  </div>
+</section>
+
+<!-- WEATHER API BANNER -->
+<section class="weather-section" id="weatherSection">
+  <div class="weather-card">
+    <div class="weather-left">
+      <span class="weather-icon" id="weatherIcon">🌤️</span>
+      <div>
+        <div class="weather-title" id="weatherTitle">Fetching weather...</div>
+        <div class="weather-sub" id="weatherSub">Getting your local conditions</div>
+      </div>
+    </div>
+    <div class="weather-suggestion" id="weatherSuggestion">Loading suggestion...</div>
+  </div>
+</section>
+
+<!-- GENERATOR -->
+<section class="gen-section" id="generator">
+  <div class="section-header">
+    <h2>Generate Your Challenge</h2>
+    <p>Pick a category and get your daily mission</p>
+  </div>
+  <div class="gen-card">
+    <div class="cat-label">Choose a Category</div>
+    <div class="categories" id="catGrid">
+      <button class="cat-btn active" data-cat="Fitness" onclick="selectCat(this)"><span class="icon">💪</span> Fitness</button>
+      <button class="cat-btn" data-cat="Mindfulness" onclick="selectCat(this)"><span class="icon">🧘</span> Mindfulness</button>
+      <button class="cat-btn" data-cat="Creativity" onclick="selectCat(this)"><span class="icon">🎨</span> Creativity</button>
+      <button class="cat-btn" data-cat="Learning" onclick="selectCat(this)"><span class="icon">📚</span> Learning</button>
+      <button class="cat-btn" data-cat="Social" onclick="selectCat(this)"><span class="icon">🤝</span> Social</button>
+      <button class="cat-btn" data-cat="Nutrition" onclick="selectCat(this)"><span class="icon">🥗</span> Nutrition</button>
+      <button class="cat-btn" data-cat="Productivity" onclick="selectCat(this)"><span class="icon">⚡</span> Productivity</button>
+      <button class="cat-btn" data-cat="Adventure" onclick="selectCat(this)"><span class="icon">🌍</span> Adventure</button>
+    </div>
+    <button class="gen-btn" id="genBtn" onclick="generateChallenge()">
+      <span class="btn-text">✦ Generate My Challenge</span>
+    </button>
+    <div class="result-box" id="resultBox">
+      <div class="result-header">
+        <div class="result-cat-tag" id="resCat">Fitness</div>
+        <div class="result-actions">
+          <button class="copy-btn" onclick="copyChallenge()">📋 Copy</button>
+          <button class="add-btn" onclick="addToTracker()">➕ Add to Tracker</button>
+        </div>
+      </div>
+      <div class="result-title" id="resTitle">—</div>
+      <div class="result-desc" id="resDesc">—</div>
+      <div class="result-meta" id="resMeta"></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="section-header">
+    <h2>Challenge Gallery</h2>
+    <p>Explore what others are doing — hover to see details</p>
+  </div>
+  <div class="gallery-filters">
+    <button class="gal-filter active" onclick="filterGallery('all', this)">All</button>
+    <button class="gal-filter" onclick="filterGallery('Fitness', this)">💪 Fitness</button>
+    <button class="gal-filter" onclick="filterGallery('Mindfulness', this)">🧘 Mind</button>
+    <button class="gal-filter" onclick="filterGallery('Creativity', this)">🎨 Creative</button>
+    <button class="gal-filter" onclick="filterGallery('Adventure', this)">🌍 Adventure</button>
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gal-item" data-cat="Fitness">
+      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop" alt="Fitness"/>
+      <div class="gal-overlay"><div class="gal-tag">💪 Fitness</div><div class="gal-name">Morning Workout</div><div class="gal-desc">Start strong with a full body routine</div></div>
+    </div>
+    <div class="gal-item" data-cat="Mindfulness">
+      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=300&fit=crop" alt="Mindfulness"/>
+      <div class="gal-overlay"><div class="gal-tag">🧘 Mindfulness</div><div class="gal-name">Breath Reset</div><div class="gal-desc">5 minutes to calm your mind</div></div>
+    </div>
+    <div class="gal-item" data-cat="Creativity">
+      <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=300&fit=crop" alt="Creativity"/>
+      <div class="gal-overlay"><div class="gal-tag">🎨 Creativity</div><div class="gal-name">Art Challenge</div><div class="gal-desc">Express yourself in 10 minutes</div></div>
+    </div>
+    <div class="gal-item" data-cat="Adventure">
+      <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400&h=300&fit=crop" alt="Adventure"/>
+      <div class="gal-overlay"><div class="gal-tag">🌍 Adventure</div><div class="gal-name">Explore Unknown</div><div class="gal-desc">Walk a path you have never taken</div></div>
+    </div>
+    <div class="gal-item" data-cat="Fitness">
+      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&h=300&fit=crop" alt="Fitness"/>
+      <div class="gal-overlay"><div class="gal-tag">💪 Fitness</div><div class="gal-name">Plank Challenge</div><div class="gal-desc">Core strength in 12 minutes</div></div>
+    </div>
+    <div class="gal-item" data-cat="Mindfulness">
+      <img src="https://images.unsplash.com/photo-1545389336-cf090694435e?w=400&h=300&fit=crop" alt="Meditation"/>
+      <div class="gal-overlay"><div class="gal-tag">🧘 Mindfulness</div><div class="gal-name">Body Scan</div><div class="gal-desc">Full body relaxation in 15 min</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKER TABLE -->
+<section class="tracker-section" id="tracker">
+  <div class="section-header">
+    <h2>Challenge Tracker</h2>
+    <p>Log, search, and sort your challenges</p>
+  </div>
+  <div class="table-controls">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="Search challenges..." oninput="filterTable()"/>
+    </div>
+    <div class="sort-wrap">
+      <label>Sort by:</label>
+      <select id="sortSelect" onchange="sortTable()">
+        <option value="date-desc">Date (Newest)</option>
+        <option value="date-asc">Date (Oldest)</option>
+        <option value="cat">Category</option>
+        <option value="diff">Difficulty</option>
+        <option value="status">Status</option>
+      </select>
+    </div>
+    <button class="clear-btn" onclick="clearCompleted()">🗑 Clear Done</button>
+  </div>
+  <div class="table-wrap">
+    <table id="challengeTable">
+      <thead>
+        <tr>
+          <th onclick="sortByCol('title')" class="sortable">Challenge <span class="sort-arrow">↕</span></th>
+          <th onclick="sortByCol('category')" class="sortable">Category <span class="sort-arrow">↕</span></th>
+          <th onclick="sortByCol('difficulty')" class="sortable">Difficulty <span class="sort-arrow">↕</span></th>
+          <th onclick="sortByCol('duration')" class="sortable">Duration <span class="sort-arrow">↕</span></th>
+          <th onclick="sortByCol('date')" class="sortable">Date <span class="sort-arrow">↕</span></th>
+          <th>Status</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr class="empty-row">
+          <td colspan="7">
+            <div class="empty-state">
+              <div class="empty-icon">📋</div>
+              <div>No challenges yet — generate one above and click "Add to Tracker"!</div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-stats" id="tableStats"></div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-header">
+    <h2>Why ChallengeAI?</h2>
+    <p>Everything you need to level up daily</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card" onmouseenter="hoverCard(this,'🎯 Tailored to You','Challenges matched exactly to your chosen category.')" onmouseleave="unhoverCard(this)">
+      <div class="feat-icon">🎯</div><h3>Category-Specific</h3>
+      <p>No generic content. Every challenge fits exactly what you want to improve.</p>
+    </div>
+    <div class="feat-card" onmouseenter="hoverCard(this,'🔀 Always Different','40+ challenges — never boring.')" onmouseleave="unhoverCard(this)">
+      <div class="feat-icon">🔀</div><h3>Always Fresh</h3>
+      <p>Multiple challenges per category means you always get something new.</p>
+    </div>
+    <div class="feat-card" onmouseenter="hoverCard(this,'📈 Your Progress','Log every win and watch your streak grow.')" onmouseleave="unhoverCard(this)">
+      <div class="feat-icon">📈</div><h3>Track Progress</h3>
+      <p>Log challenges, mark them done, and build your daily streak.</p>
+    </div>
+    <div class="feat-card" onmouseenter="hoverCard(this,'⚡ Zero Wait','Pick, generate, start. Done.')" onmouseleave="unhoverCard(this)">
+      <div class="feat-icon">⚡</div><h3>Instant Results</h3>
+      <p>No waiting. Pick a category and your challenge appears instantly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="nav-logo">⚡ ChallengeAI</div>
+    <p>Push your limits — every single day.</p>
+    <p class="footer-copy">© 2025 ChallengeAI. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
